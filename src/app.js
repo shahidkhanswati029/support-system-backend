@@ -14,23 +14,23 @@ const allowedOrigins = [
   "https://support-system-frontend-lo0uuick9-shahidkhanswati029s-projects.vercel.app"
 ];
 
-app.use(
+appapp.use(
   cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin (like mobile apps, curl)
+    origin: (origin, callback) => {
       if (!origin) return callback(null, true);
 
-      // allow all Vercel preview URLs
       if (
         allowedOrigins.includes(origin) ||
-        origin.endsWith(".vercel.app")
+        origin.includes(".vercel.app")
       ) {
         return callback(null, true);
       }
 
-      callback(new Error("Not allowed by CORS"));
+      return callback(null, false);
     },
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.use(express.json());
