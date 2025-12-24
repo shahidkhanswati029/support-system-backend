@@ -14,7 +14,7 @@ const allowedOrigins = [
   "https://support-system-frontend-lo0uuick9-shahidkhanswati029s-projects.vercel.app"
 ];
 
-appapp.use(
+app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
