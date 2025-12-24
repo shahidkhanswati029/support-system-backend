@@ -8,7 +8,7 @@ import {
   updateTicketStatus,
 } from "../controllers/ticket.controller.js";
 import { createTicketValidator } from "../validators/ticket.validator.js";
-import validate from "../middlewares/error.middleware.js";
+import validate from "../middlewares/validate.middleware.js";
 
 const router = express.Router();
 

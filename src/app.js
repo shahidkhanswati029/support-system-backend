@@ -4,7 +4,7 @@ import cors from "cors";
 import authRoutes from "./routes/auth.routes.js";
 import ticketRoutes from "./routes/ticket.routes.js";
 import subscriptionRoutes from "./routes/subscription.routes.js";
-import errorHandler from "./middlewares/error.middleware.js";
+import errorHandler from "./middlewares/validate.middleware.js";
 
 const app = express();
 app.use(cors({
