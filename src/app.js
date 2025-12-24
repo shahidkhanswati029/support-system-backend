@@ -7,32 +7,23 @@ import subscriptionRoutes from "./routes/subscription.routes.js";
 import errorHandler from "./middlewares/error.middleware.js";
 
 const app = express();
-
 const allowedOrigins = [
   "http://localhost:3000",
   "https://support-system-frontend.vercel.app",
-  "https://support-system-frontend-lo0uuick9-shahidkhanswati029s-projects.vercel.app"
 ];
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-
-      if (
-        allowedOrigins.includes(origin) ||
-        origin.includes(".vercel.app")
-      ) {
-        return callback(null, true);
-      }
-
-      return callback(null, false);
-    },
+    origin: allowedOrigins,
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS","PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+// Required for Vercel preflight
+app.options("*", cors());
+
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
