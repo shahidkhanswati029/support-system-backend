@@ -7,21 +7,15 @@ import subscriptionRoutes from "./routes/subscription.routes.js";
 import errorHandler from "./middlewares/error.middleware.js";
 
 const app = express();
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://support-system-frontend.vercel.app",
-];
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://support-system-frontend.vercel.app",
+  ],
+  credentials: true,
+}));
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS","PATCH"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-
-// Required for Vercel preflight
+// 🔥 THIS LINE FIXES PENDING REQUESTS ON VERCEL
 app.options("*", cors());
 
 app.use(express.json());
